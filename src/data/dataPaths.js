@@ -1,0 +1,1 @@
+export const data = "https://raw.githubusercontent.com/d2ski/viz-russian-global-trade/main/data/partners_import_export_data.json";
