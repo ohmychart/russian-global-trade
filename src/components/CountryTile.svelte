@@ -1,12 +1,12 @@
 <script>
 	import { area, line } from 'd3-shape';
 	import { countryTileConfig, countryTileScaleY, countryTileScaleX } from '$stores/scales.js';
+	import { displayFlows } from '$stores/settings.js';
 	import {countries as countriesRu} from '$data/countriesRu.js';
 
-	export let country;
+	import { fly } from 'svelte/transition';
 
-	$: width = $countryTileConfig.width;
-	$: height = $countryTileConfig.height;
+	export let country;
 
 	$: areaGenerator = area()
 		.x((d) => $countryTileScaleX(d.year))
@@ -17,6 +17,8 @@
 		.x((d) => $countryTileScaleX(d.year))
 		.y((d) => $countryTileScaleY(d.value));
 
+	
+
 	$: importArea = areaGenerator(country.records.filter((d) => d.flow === 'Import'));
 	$: exportArea = areaGenerator(country.records.filter((d) => d.flow === 'Export'));
     $: turnoverLine = lineGenerator(country.records.filter((d) => d.flow === 'Turnover'));
@@ -24,11 +26,21 @@
 </script>
 
 
-<svg viewBox="0 0 {width} {height}" class="country-tile">
+<svg viewBox="0 0 {$countryTileConfig.width} {$countryTileConfig.height}" class="country-tile">
     <text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
-	<path d={importArea} class="area-import" />
-	<path d={exportArea} class="area-export" />
-    <path d={turnoverLine} class="line-turnover" />
+	{#if $displayFlows.import }
+		<path d={importArea} class="area-import" transition:fly />
+	{/if}
+	
+	{#if $displayFlows.export }
+	<path d={exportArea} class="area-export" transition:fly />
+	{/if}
+
+	{#if $displayFlows.turnover }
+		<path d={turnoverLine} class="line-turnover" transition:fly />	
+	{/if}
+	
+    
 </svg>
 
 <style>

@@ -16,7 +16,6 @@
 
 	export let data;
 
-
 	import Header from '$components/Header.svelte';
 	import Visualization from '$components/Visualization.svelte';
 </script>
