@@ -1,7 +1,7 @@
 export const countries = {
     'USA': 'США',
     'Canada': 'Канада',
-    'Br. Virgin Isds': 'Виргинские О-ва',
+    'Br. Virgin Isds': 'Виргинские О.',
     'Cuba': 'Куба',
     'Brazil': 'Бразилия',
     'Argentina': 'Аргентина',

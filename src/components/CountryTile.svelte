@@ -27,7 +27,7 @@
 
 
 <svg viewBox="0 0 {$countryTileConfig.width} {$countryTileConfig.height}" class="country-tile">
-    <text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
+    
 	{#if $displayFlows.import }
 		<path d={importArea} class="area-import" transition:fly />
 	{/if}
@@ -39,19 +39,25 @@
 	{#if $displayFlows.turnover }
 		<path d={turnoverLine} class="line-turnover" transition:fly />	
 	{/if}
-	
+	<text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
     
 </svg>
 
 <style>
 	.country-tile {
-		background-color: #fff;
-		border: 1px solid #BDBDBD;
+		background-color: var(--color-white-primary);
+		outline: 1px solid var(--color-dark-light);
+		overflow: hidden;
+	}
+
+	.country-tile:hover {
+		outline: 1px solid var(--color-dark-medium);
+		cursor: pointer;
 	}
 
     .country-name {
-        font-size: 14px;
-        fill: #757575;
+        font-size: 13px;
+        fill: var(--color-dark-secondary);
     }
 
 	.area-import {

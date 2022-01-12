@@ -1,5 +1,7 @@
 <script>
-	import { displayFlows } from '$stores/settings.js';
+	import { displayFlows, displayYearStart, displayYearEnd } from '$stores/settings.js';
+
+    import InputNumberRange from '$components/InputNumberRange.svelte';
 
 	$: if (!$displayFlows.turnover && !$displayFlows.export && !$displayFlows.import) {
 		$displayFlows.turnover = true;
@@ -25,6 +27,9 @@
 	<span class="checkmark" />
 	Экспорт
 </label>
+
+
+<InputNumberRange minValue=2000 maxValue=2020 bind:startValue={$displayYearStart} bind:endValue={$displayYearEnd}/>
 
 <style>
 	/* Customize the label (the container) */
@@ -58,12 +63,12 @@
 		left: 0;
 		height: 1.35rem;
 		width: 1.35rem;
-		background-color: #eee;
+		background-color: var(--color-dark-light);
 	}
 
 	/* On mouse-over, add a grey background color */
 	.container:hover input ~ .checkmark {
-		background-color: #ccc;
+		background-color: var(--color-dark-medium);
 	}
 
 	/* When the checkbox is checked, add a blue background */

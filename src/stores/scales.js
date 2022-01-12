@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 
 
 export const countryTileConfig = writable({
-  width: 100,
+  width: 105,
   height: 75,
 });
 

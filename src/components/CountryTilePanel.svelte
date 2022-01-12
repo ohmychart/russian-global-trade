@@ -22,6 +22,11 @@
 <style>
 	section {
 		margin: 1rem 1rem 2rem 1rem;
+		text-align: center;
+	}
+
+	h2 {
+		text-align: left;
 	}
 
 	.tile {
@@ -41,29 +46,29 @@
 
 	ul {
 		display: grid;
-		gap: 0.3rem 0.3rem;
+		gap: 10px 10px;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
 	.col-1 {
-		grid-template-columns: repeat(1, 100px);
+		grid-template-columns: repeat(1, 105px);
 	}
 
 	.col-2 {
-		grid-template-columns: repeat(2, 100px);
+		grid-template-columns: repeat(2, 105px);
 	}
 
 	.col-3 {
-		grid-template-columns: repeat(3, 100px);
+		grid-template-columns: repeat(3, 105px);
 	}
 
 	.col-4 {
-		grid-template-columns: repeat(4, 100px);
+		grid-template-columns: repeat(4, 105px);
 	}
 
 	.col-5 {
-		grid-template-columns: repeat(5, 100px);
+		grid-template-columns: repeat(5, 105px);
 	}
 </style>

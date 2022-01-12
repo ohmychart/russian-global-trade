@@ -2,7 +2,7 @@
 	import CountryTilePanel from '$components/CountryTilePanel.svelte';
 	import Settings from '$components/Settings.svelte';
 
-	import { displayFlows, displayYears } from '$stores/settings.js';
+	import { displayFlows, displayYearStart, displayYearEnd } from '$stores/settings.js';
 	import { countryTileConfig } from '$stores/scales';
 	import { setScales } from '$utils/scales.js';
 
@@ -12,7 +12,7 @@
 
 	export let data;
 
-	$: setScales(data.data, $displayFlows, $displayYears, $countryTileConfig);
+	$: setScales(data.data, $displayFlows, $displayYearStart, $displayYearEnd, $countryTileConfig);
 
 	const sortedData = sort(data.data, (d) => {
 		let tSum = sum(
@@ -32,6 +32,7 @@
 </script>
 
 <Settings />
+
 
 <main>
 	<div id="earth-map">{@html earth}</div>

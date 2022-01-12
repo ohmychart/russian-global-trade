@@ -6,4 +6,5 @@ export let displayFlows = writable({
   turnover: true,
 });
 
-export let displayYears = writable([2000, 2020]);
+export let displayYearStart = writable(2000);
+export let displayYearEnd = writable(2020);

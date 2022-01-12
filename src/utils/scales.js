@@ -6,7 +6,8 @@ import { max } from "d3-array";
 export const setScales = function (
   data,
   displayFlows,
-  displayYears,
+  displayYearStart,
+  displayYearEnd,
   countryTileConfig
 ) {
   countryTileScaleY.set(
@@ -19,7 +20,11 @@ export const setScales = function (
           (d) =>
             max(
               d.records
-                .filter((d) => displayFlows[d.flow.toLowerCase()])
+                .filter((d) => 
+                  displayFlows[d.flow.toLowerCase()] &&
+                    (d.year >= displayYearStart) &&
+                    (d.year <= displayYearEnd)
+                )
                 .map((d) => d.value)
             )
         ),
@@ -27,6 +32,8 @@ export const setScales = function (
   );
 
   countryTileScaleX.set(
-    scaleLinear().range([0, countryTileConfig.width]).domain(displayYears)
+    scaleLinear()
+      .range([0, countryTileConfig.width])
+      .domain([displayYearStart, displayYearEnd])
   );
 };
