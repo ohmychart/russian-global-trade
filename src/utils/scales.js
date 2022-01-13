@@ -3,9 +3,46 @@ import { countryTileScaleY, countryTileScaleX } from "$stores/scales.js";
 import { scaleLinear } from "d3-scale";
 import { max } from "d3-array";
 
-export const setScales = function (
+
+const filterRange = (rec, displayYearStart, displayYearEnd) => {
+  return rec.year >= displayYearStart && rec.year <= displayYearEnd;
+};
+
+const filterEndpoints = (rec, displayYearStart, displayYearEnd) => {
+  return rec.year == displayYearStart || rec.year == displayYearEnd;
+};
+
+export const filterData = function (
   data,
   displayFlows,
+  displayYearStart,
+  displayYearEnd,
+  endpointsOnly
+) {
+
+  let filterYears = filterRange;
+  if (endpointsOnly) filterYears = filterEndpoints;
+
+  const filtered = data
+    .filter((d) => d.iso !== "WLD")
+    .map((d) => {
+      return {
+        records: d.records.filter(
+          (rec) =>
+            filterYears(rec, displayYearStart, displayYearEnd) &&
+            displayFlows[rec.flow.toLowerCase()]
+        ),
+        country: d.country,
+        iso: d.iso,
+        continent: d.continent,
+      };
+    });
+
+  return filtered;
+};
+
+export const setScales = function (
+  data,
   displayYearStart,
   displayYearEnd,
   countryTileConfig
@@ -13,22 +50,7 @@ export const setScales = function (
   countryTileScaleY.set(
     scaleLinear()
       .range([countryTileConfig.height, 0])
-      .domain([
-        0,
-        max(
-          data.filter((d) => d.iso !== "WLD"),
-          (d) =>
-            max(
-              d.records
-                .filter((d) => 
-                  displayFlows[d.flow.toLowerCase()] &&
-                    (d.year >= displayYearStart) &&
-                    (d.year <= displayYearEnd)
-                )
-                .map((d) => d.value)
-            )
-        ),
-      ])
+      .domain([0, max(data, (d) => max(d.records.map((d) => d.value)))])
   );
 
   countryTileScaleX.set(

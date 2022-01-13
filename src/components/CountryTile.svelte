@@ -40,19 +40,22 @@
 		<path d={turnoverLine} class="line-turnover" transition:fly />	
 	{/if}
 	<text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
-    
+
+	<slot name="legend"></slot>
+	<slot name="yAxis"></slot>
+
 </svg>
 
 <style>
 	.country-tile {
 		background-color: var(--color-white-primary);
 		outline: 1px solid var(--color-dark-light);
-		overflow: hidden;
+		overflow: visible;
 	}
 
 	.country-tile:hover {
 		outline: 1px solid var(--color-dark-medium);
-		cursor: pointer;
+		/* cursor: pointer; */
 	}
 
     .country-name {

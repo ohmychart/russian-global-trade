@@ -8,3 +8,5 @@ export let displayFlows = writable({
 
 export let displayYearStart = writable(2000);
 export let displayYearEnd = writable(2020);
+
+export let endpointsOnly = writable(false);

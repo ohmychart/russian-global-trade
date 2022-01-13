@@ -1,18 +1,17 @@
 <script>
 	import CountryTilePanel from '$components/CountryTilePanel.svelte';
+	import CountryTileLegend from '$components/CountryTileLegend.svelte';
 	import Settings from '$components/Settings.svelte';
 
-	import { displayFlows, displayYearStart, displayYearEnd } from '$stores/settings.js';
+	import { displayFlows, displayYearStart, displayYearEnd, endpointsOnly } from '$stores/settings.js';
 	import { countryTileConfig } from '$stores/scales';
-	import { setScales } from '$utils/scales.js';
+	import { filterData, setScales } from '$utils/scales.js';
 
 	import earth from '$svg/earth.svg';
 
 	import { sort, sum } from 'd3-array';
 
 	export let data;
-
-	$: setScales(data.data, $displayFlows, $displayYearStart, $displayYearEnd, $countryTileConfig);
 
 	const sortedData = sort(data.data, (d) => {
 		let tSum = sum(
@@ -23,15 +22,25 @@
 		return -tSum;
 	});
 
-	const europe = sortedData.filter((d) => d.continent === 'Europe');
-	const africa = sortedData.filter((d) => d.continent === 'Africa');
-	const asia = sortedData.filter((d) => d.continent === 'Asia');
-	const northAmerica = sortedData.filter((d) => d.continent === 'North America');
-	const southAmerica = sortedData.filter((d) => d.continent === 'South America');
-	const oceania = sortedData.filter((d) => d.continent === 'Oceania');
+	$: filteredData = filterData(sortedData, $displayFlows, $displayYearStart, $displayYearEnd, $endpointsOnly);
+	$: setScales(filteredData, $displayYearStart, $displayYearEnd, $countryTileConfig);
+
+	$: europe = filteredData.filter((d) => d.continent === 'Europe');
+	$: africa = filteredData.filter((d) => d.continent === 'Africa');
+	$: asia = filteredData.filter((d) => d.continent === 'Asia');
+	$: northAmerica = filteredData.filter((d) => d.continent === 'North America');
+	$: southAmerica = filteredData.filter((d) => d.continent === 'South America');
+	$: oceania = filteredData.filter((d) => d.continent === 'Oceania');
+	$: legend = filteredData.filter((d) => d.country === 'Germany');
 </script>
 
 <Settings />
+
+
+<div id="legend-tile">
+	<CountryTileLegend country={legend[0]} />
+</div>
+
 
 
 <main>
@@ -54,6 +63,13 @@
 </main>
 
 <style>
+
+	#legend-tile {
+		width: 105px;
+		margin: auto;
+		margin-top: 2rem;
+	}
+
 	main {
 		position: relative;
 		display: flex;

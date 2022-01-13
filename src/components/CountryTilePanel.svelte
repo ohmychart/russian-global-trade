@@ -33,7 +33,7 @@
 		display: inline-block;
 		background-color: var(--color-dark-50);
 		border: 1px solid var(--color-dark-light);
-		padding: 1rem;
+		padding: 0.5rem 1rem;
 	}
 
 	h2 {

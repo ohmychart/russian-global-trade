@@ -1,5 +1,5 @@
 <script>
-	import { displayFlows, displayYearStart, displayYearEnd } from '$stores/settings.js';
+	import { displayFlows, displayYearStart, displayYearEnd, endpointsOnly } from '$stores/settings.js';
 
     import InputNumberRange from '$components/InputNumberRange.svelte';
 
@@ -30,6 +30,13 @@
 
 
 <InputNumberRange minValue=2000 maxValue=2020 bind:startValue={$displayYearStart} bind:endValue={$displayYearEnd}/>
+
+
+<label class="container">
+	<input type="checkbox" bind:checked={$endpointsOnly} />
+	<span class="checkmark" />
+	Только период
+</label>
 
 <style>
 	/* Customize the label (the container) */
