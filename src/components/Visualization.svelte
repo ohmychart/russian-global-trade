@@ -34,43 +34,56 @@
 	$: legend = filteredData.filter((d) => d.country === 'Germany');
 </script>
 
-<Settings />
 
-
-<div id="legend-tile">
-	<CountryTileLegend country={legend[0]} />
-</div>
 
 
 
 <main>
-	<div id="earth-map">{@html earth}</div>
 
-	<div id="west">
-		<CountryTilePanel countries={northAmerica} continentName="Северная Америка" columns="2" />
-		<CountryTilePanel countries={southAmerica} continentName="Южная Америка" columns="2" />
+	<div id="controls-container">
+		<Settings />
+
+		<div id="legend-container">
+			<CountryTileLegend country={legend[0]} />
+		</div>
 	</div>
 
-	<div id="middle">
-		<CountryTilePanel countries={europe} continentName="Европейские страны" columns="5" />
-		<CountryTilePanel countries={africa} continentName="Африка" columns="2" />
+	<div id="viz-container">
+		<div id="earth-map">{@html earth}</div>
+
+		<div id="west">
+			<CountryTilePanel countries={northAmerica} continentName="Северная Америка" columns="2" />
+			<CountryTilePanel countries={southAmerica} continentName="Южная Америка" columns="2" />
+		</div>
+	
+		<div id="middle">
+			<CountryTilePanel countries={europe} continentName="Европейские страны" columns="5" />
+			<CountryTilePanel countries={africa} continentName="Африка" columns="2" />
+		</div>
+	
+		<div id="east">
+			<CountryTilePanel countries={asia} continentName="Азия" columns="3" />
+			<CountryTilePanel countries={oceania} continentName="Океания" columns="1" />
+		</div>
 	</div>
 
-	<div id="east">
-		<CountryTilePanel countries={asia} continentName="Азия" columns="3" />
-		<CountryTilePanel countries={oceania} continentName="Океания" columns="1" />
-	</div>
+
 </main>
 
 <style>
 
-	#legend-tile {
-		width: 105px;
-		margin: auto;
-		margin-top: 2rem;
+	#controls-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		margin-bottom: 1.5rem;
 	}
 
-	main {
+	#legend-container {
+		width: 105px;
+		margin: 2rem auto 2rem auto;
+	}
+
+	#viz-container {
 		position: relative;
 		display: flex;
 		flex-direction: row;

@@ -35,15 +35,19 @@
 	}
 
 	#main-logo {
-		width: 66px;
-		height: 36px;
+		width: 32px;
+		height: 32px;
 		display: inline-block;
 		padding: 0;
 		margin: 0;
+		fill: var(--color-dark-light);
+		transition: all 0.4s ease-in-out;
 	}
 
-	#main-logo {
+	#main-logo:hover {
 		fill: var(--color-dark-primary);
+		transform: scale(1.1);
+		cursor: pointer;
 	}
 
 	#main-header-title {

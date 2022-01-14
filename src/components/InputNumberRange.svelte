@@ -75,9 +75,9 @@
 		display: inline-block;
 	}
 
-    input:focus {
-        outline: none;
-    }
+	input:focus {
+		outline: none;
+	}
 
 	button {
 		background-color: var(--color-dark-light);
@@ -104,5 +104,7 @@
 		background-color: var(--color-dark-medium);
 	}
 
-
+	.range {
+		margin-left: 1rem;
+	}
 </style>
