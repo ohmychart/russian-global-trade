@@ -17,6 +17,7 @@
 	export let data;
 
 	import Header from '$components/Header.svelte';
+	import Intro from '$components/Intro.svelte';
 	import Visualization from '$components/Visualization.svelte';
 </script>
 
@@ -33,5 +34,9 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
 </svelte:head>
+
 <Header />
+
+<Intro />
+
 <Visualization {data} />

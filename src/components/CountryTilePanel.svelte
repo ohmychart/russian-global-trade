@@ -21,7 +21,7 @@
 
 <style>
 	section {
-		margin: 1rem 1rem 2rem 1rem;
+		margin: 1rem 0.5rem 2rem 0.5rem;
 		text-align: center;
 	}
 
@@ -32,8 +32,8 @@
 	.tile {
 		display: inline-block;
 		background-color: var(--color-dark-50);
-		border: 1px solid var(--color-dark-light);
-		padding: 0.5rem 1rem;
+		border: none;
+		padding: 1rem 1.3rem;
 	}
 
 	h2 {
@@ -46,7 +46,7 @@
 
 	ul {
 		display: grid;
-		gap: 10px 10px;
+		gap: 8px 8px;
 		list-style: none;
 		margin: 0;
 		padding: 0;

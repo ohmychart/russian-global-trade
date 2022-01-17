@@ -1,7 +1,8 @@
 <script>
 	import CountryTile from '$components/CountryTile.svelte';
-	import { displayFlows, endpointsOnly } from '$stores/settings.js';
+	import { displayFlows } from '$stores/settings.js';
 	import { countryTileScaleY, countryTileScaleX } from '$stores/scales.js';
+	import { formatTicksY, formatTicksX } from '$utils/helpers.js';
 
 	export let country;
 
@@ -12,14 +13,6 @@
 	];
 
 	$: xTicks = $countryTileScaleX.domain();
-
-	const formatTicksY = (tick) => {
-		return `$${(tick / 1e9).toFixed(0)} млрд`;
-	};
-
-	const formatTicksX = (tick) => {
-		return "'" + `${tick}`.slice(-2);
-	}
 </script>
 
 <CountryTile {country}>

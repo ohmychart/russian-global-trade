@@ -1,12 +1,39 @@
 <script>
 	import { area, line } from 'd3-shape';
+	import { bisector } from 'd3-array';
 	import { countryTileConfig, countryTileScaleY, countryTileScaleX } from '$stores/scales.js';
 	import { displayFlows } from '$stores/settings.js';
 	import { countries as countriesRu } from '$data/countriesRu.js';
 
+	import Tooltip from '$components/Tooltip.svelte';
+
 	import { fly } from 'svelte/transition';
 
 	export let country;
+
+	let tooltip = {
+		show: false,
+		x: 0,
+		tileX: 0,
+		year: $countryTileScaleX.domain()[0]
+	};
+
+	function mouseOver(event) {
+		tooltip.tileX = event.offsetX;
+		tooltip.show = true;
+
+		let bisect = bisector((d) => d.year).center;
+		let idx = bisect(country.records, $countryTileScaleX.invert(tooltip.tileX));
+
+		tooltip.year = country.records[idx].year;
+		tooltip.x = $countryTileScaleX(tooltip.year);
+	}
+
+	function mouseLeave() {
+		tooltip.show = false;
+	}
+
+	$: console.log(tooltip, country.records);
 
 	$: areaGenerator = area()
 		.x((d) => $countryTileScaleX(d.year))
@@ -20,9 +47,19 @@
 	$: importArea = areaGenerator(country.records.filter((d) => d.flow === 'Import'));
 	$: exportArea = areaGenerator(country.records.filter((d) => d.flow === 'Export'));
 	$: turnoverLine = lineGenerator(country.records.filter((d) => d.flow === 'Turnover'));
+
+	$: showTooltip = tooltip.show && tooltip.year && !$$slots.legend;
 </script>
 
-<svg viewBox="0 0 {$countryTileConfig.width} {$countryTileConfig.height}" class="country-tile">
+<svg
+	viewBox="0 0 {$countryTileConfig.width} {$countryTileConfig.height}"
+	class="country-tile"
+	on:mouseover={mouseOver}
+	on:mousemove={mouseOver}
+	on:focus={mouseOver}
+	on:mouseleave={mouseLeave}
+	on:click={mouseOver}
+>
 	{#if $displayFlows.import}
 		<path d={importArea} class="area-import" transition:fly />
 	{/if}
@@ -34,7 +71,10 @@
 	{#if $displayFlows.turnover}
 		<path d={turnoverLine} class="line-turnover" transition:fly />
 	{/if}
-	
+
+	{#if showTooltip}
+		<line x1={tooltip.x} x2={tooltip.x} y1="0" y2="100%" class="tooltip-line" />
+	{/if}
 
 	<slot name="legend" />
 	<slot name="yAxis" />
@@ -43,20 +83,24 @@
 	{#if !$$slots.legend}
 		<text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
 	{:else}
-		<text x="2px" y="14px" class="country-name">Страна-партнер</text>
+		<text x="2px" y="14px" class="country-name">Торговый объем</text>
 	{/if}
 </svg>
+
+{#if showTooltip}
+	<Tooltip year={tooltip.year} {country} />
+{/if}
 
 <style>
 	.country-tile {
 		background-color: var(--color-white-primary);
-		outline: 1px solid var(--color-dark-light);
+		outline: 2px solid var(--color-dark-light);
 		overflow: visible;
 	}
 
 	.country-tile:hover {
-		outline: 1px solid var(--color-dark-medium);
-		/* cursor: pointer; */
+		outline: 2px solid var(--color-dark-primary);
+		cursor: pointer;
 	}
 
 	.country-name {
@@ -77,5 +121,13 @@
 		stroke-width: 1px;
 		fill: none;
 		stroke-dasharray: 2 2;
+	}
+
+	.tooltip-line {
+		stroke-width: 1px;
+		fill: none;
+		stroke: var(--color-dark-primary);
+		stroke-opacity: 1;
+		shape-rendering: crispEdges;
 	}
 </style>
