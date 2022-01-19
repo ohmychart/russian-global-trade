@@ -83,7 +83,8 @@
 		stroke: #212121ff;
 		stroke-width: 1px;
 		fill: none;
-		stroke-dasharray: 2 2;
+		/* stroke-dasharray: 2 2; */
+		shape-rendering: crispEdges;
 	}
 
 	.import {

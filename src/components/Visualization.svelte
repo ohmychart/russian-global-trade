@@ -3,15 +3,23 @@
 	import CountryTileLegend from '$components/CountryTileLegend.svelte';
 	import Settings from '$components/Settings.svelte';
 
-	import { displayFlows, displayYearStart, displayYearEnd, endpointsOnly } from '$stores/settings.js';
 	import { countryTileConfig } from '$stores/scales';
+	import {
+		displayFlows,
+		displayYearStart,
+		displayYearEnd,
+		endpointsOnly,
+		isMobileView
+	} from '$stores/settings.js';
+	
 	import { filterData, setScales } from '$utils/scales.js';
-
 	import earth from '$svg/earth.svg';
 
 	import { sort, sum } from 'd3-array';
 
 	export let data;
+
+	let width;
 
 	const sortedData = sort(data.data, (d) => {
 		let tSum = sum(
@@ -22,7 +30,15 @@
 		return -tSum;
 	});
 
-	$: filteredData = filterData(sortedData, $displayFlows, $displayYearStart, $displayYearEnd, $endpointsOnly);
+	$: $isMobileView = width < 1300;
+
+	$: filteredData = filterData(
+		sortedData,
+		$displayFlows,
+		$displayYearStart,
+		$displayYearEnd,
+		$endpointsOnly
+	);
 	$: setScales(filteredData, $displayYearStart, $displayYearEnd, $countryTileConfig);
 
 	$: europe = filteredData.filter((d) => d.continent === 'Europe');
@@ -34,13 +50,8 @@
 	$: legend = filteredData.filter((d) => d.country === 'Germany');
 </script>
 
-
-
-
-
-<main>
-
-	<div id="controls-container">
+<main bind:clientWidth={width}>
+	<div class="controls-container" class:flex-row={!$isMobileView}>
 		<Settings />
 
 		<div id="legend-container">
@@ -48,46 +59,56 @@
 		</div>
 	</div>
 
-	<div id="viz-container">
-		<div id="earth-map">{@html earth}</div>
+	<div class="viz-container" class:flex-row={!$isMobileView}>
+		{#if !$isMobileView}
+			<div id="earth-map">{@html earth}</div>
+		{/if}
 
 		<div id="west">
 			<CountryTilePanel countries={northAmerica} continentName="Северная Америка" columns="2" />
 			<CountryTilePanel countries={southAmerica} continentName="Южная Америка" columns="2" />
 		</div>
-	
+
 		<div id="middle">
 			<CountryTilePanel countries={europe} continentName="Европейские страны" columns="5" />
 			<CountryTilePanel countries={africa} continentName="Африка" columns="2" />
 		</div>
-	
+
 		<div id="east">
 			<CountryTilePanel countries={asia} continentName="Азия" columns="3" />
 			<CountryTilePanel countries={oceania} continentName="Океания" columns="1" />
 		</div>
 	</div>
-
-
 </main>
 
 <style>
-
-	#controls-container {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		margin-bottom: 1.5rem;
+	.controls-container {
+		display: block;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
 	}
 
 	#legend-container {
 		width: 105px;
-		margin: 2rem auto 2rem auto;
+		margin: auto;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
 	}
 
-	#viz-container {
+	.viz-container {
 		position: relative;
-		display: flex;
+		display: block;
+		margin-top: 2rem;
+		/* display: flex;
 		flex-direction: row;
 		justify-content: space-around;
+		align-items: center; */
+	}
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 		align-items: center;
 	}
 

@@ -1,19 +1,27 @@
 <script>
 	import CountryTile from '$components/CountryTile.svelte';
+	import { isMobileView } from '$stores/settings.js'
 
 	export let continentName;
 	export let countries;
 	export let columns = 2;
 
-	const columnsClass = `col-${columns}`
+	let columnsClass;
+
+	$: if ($isMobileView) {
+		columnsClass = 'col-3';
+	} else {
+		columnsClass = `col-${columns}`;
+	};
+
 </script>
 
-<section>
-	<div class="tile">
+<section class:side-margin-sm={$isMobileView}>
+	<div class="tile" class:tile-sm={$isMobileView}>
 		<h2>{continentName}</h2>
 		<ul class={columnsClass} >
 			{#each countries as country}
-				<li class="col-2-item"><CountryTile {country} /></li>
+				<li><CountryTile {country} /></li>
 			{/each}
 		</ul>
 	</div>
@@ -25,6 +33,11 @@
 		text-align: center;
 	}
 
+	.side-margin-sm {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
 	h2 {
 		text-align: left;
 	}
@@ -34,6 +47,11 @@
 		background-color: var(--color-dark-50);
 		border: none;
 		padding: 1rem 1.3rem;
+	}
+
+	.tile-sm {
+		padding: 0;
+		background-color: var(--color-white-primary);
 	}
 
 	h2 {
@@ -62,6 +80,10 @@
 
 	.col-3 {
 		grid-template-columns: repeat(3, 105px);
+	}
+
+	.col-3-sm {
+		grid-template-columns: repeat(3, 95px);
 	}
 
 	.col-4 {

@@ -14,16 +14,15 @@
 	let tooltip = {
 		show: false,
 		x: 0,
-		tileX: 0,
 		year: $countryTileScaleX.domain()[0]
 	};
 
 	function mouseOver(event) {
-		tooltip.tileX = event.offsetX;
 		tooltip.show = true;
 
+		let tileX = event.offsetX;
 		let bisect = bisector((d) => d.year).center;
-		let idx = bisect(country.records, $countryTileScaleX.invert(tooltip.tileX));
+		let idx = bisect(country.records, $countryTileScaleX.invert(tileX));
 
 		tooltip.year = country.records[idx].year;
 		tooltip.x = $countryTileScaleX(tooltip.year);
@@ -32,8 +31,6 @@
 	function mouseLeave() {
 		tooltip.show = false;
 	}
-
-	$: console.log(tooltip, country.records);
 
 	$: areaGenerator = area()
 		.x((d) => $countryTileScaleX(d.year))
@@ -53,12 +50,11 @@
 
 <svg
 	viewBox="0 0 {$countryTileConfig.width} {$countryTileConfig.height}"
-	class="country-tile"
+	class="country-tile" class:country-tile-hovered={showTooltip}
 	on:mouseover={mouseOver}
 	on:mousemove={mouseOver}
 	on:focus={mouseOver}
 	on:mouseleave={mouseLeave}
-	on:click={mouseOver}
 >
 	{#if $displayFlows.import}
 		<path d={importArea} class="area-import" transition:fly />
@@ -98,7 +94,7 @@
 		overflow: visible;
 	}
 
-	.country-tile:hover {
+	.country-tile-hovered {
 		outline: 2px solid var(--color-dark-primary);
 		cursor: pointer;
 	}
@@ -120,7 +116,7 @@
 		stroke: #212121ff;
 		stroke-width: 1px;
 		fill: none;
-		stroke-dasharray: 2 2;
+		/* stroke-dasharray: 2 2; */
 	}
 
 	.tooltip-line {
@@ -129,5 +125,6 @@
 		stroke: var(--color-dark-primary);
 		stroke-opacity: 1;
 		shape-rendering: crispEdges;
+		stroke-dasharray: 2 2;
 	}
 </style>

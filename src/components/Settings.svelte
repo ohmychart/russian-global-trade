@@ -20,30 +20,59 @@
 
 	
 	<div id="years-settings-container">
+		<div>
 		<InputNumberRange
 			minValue="2000"
 			maxValue="2020"
 			bind:startValue={$displayYearStart}
 			bind:endValue={$displayYearEnd}
 		/>
-	
-		<Checkbox bind:checked={$endpointsOnly} label="Только период" />
+		</div>
+		
+		<div>
+		<Checkbox bind:checked={$endpointsOnly} label="Период" />
+		</div>
 	</div>
 
 	<div id="flows-settings-container">
-		<Checkbox bind:checked={$displayFlows.turnover} label="Оборот" />
-		<Checkbox bind:checked={$displayFlows.import} label="Импорт" />
-		<Checkbox bind:checked={$displayFlows.export} label="Экспорт" />
+		<div><Checkbox bind:checked={$displayFlows.turnover} label="Оборот" /></div>
+		<div><Checkbox bind:checked={$displayFlows.import} label="Импорт" /></div>
+		<div><Checkbox bind:checked={$displayFlows.export} label="Экспорт" /></div>
 	</div>
 </div>
 
 
 <style>
-	#years-settings-container, #flows-settings-container {
-		margin: 2rem auto 2rem auto;
+	#years-settings-container {
+		padding-top: 1.5rem;
+		text-align: center;
 	}
 
+	#years-settings-container div {
+		display: inline-block;
+		margin-left: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	#flows-settings-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+
+	}
+
+	#flows-settings-container div {
+		margin: 0 0.5rem;
+	}
+
+
 	#container {
-		text-align: center;
+		
+		margin: auto;
+		padding-bottom: 1.5rem;
+		padding-top: 1.5rem;
 	}
 </style>

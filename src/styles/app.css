@@ -25,3 +25,11 @@ body {
 header {
     margin-bottom: 3rem;
 }
+
+a {
+    color: var(--color-dark-secondary);
+}
+
+a:hover {
+    color: var(--color-dark-primary);
+}

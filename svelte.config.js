@@ -2,6 +2,8 @@ import adapter from '@sveltejs/adapter-auto';
 import path from "path";
 import svg from "vite-plugin-svgstring";
 
+const dev = process.env.NODE_ENV === "development";
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
@@ -23,6 +25,10 @@ const config = {
 			plugins: [
 				svg()
 			],
+		},
+		paths: {
+			base: dev ? "" : "/russian-global-trade",
+			assets: dev ? "" : "/russian-global-trade"
 		}
 	}
 };

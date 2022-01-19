@@ -15,7 +15,7 @@
 		display: inline-block;
 		position: relative;
 		padding-left: 1.7rem;
-		margin-left: 1rem;
+		/* margin-left: 1rem; */
 		cursor: pointer;
 		font-size: 1rem;
 		line-height: 1.375rem;
