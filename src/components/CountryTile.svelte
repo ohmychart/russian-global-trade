@@ -2,7 +2,7 @@
 	import { area, line } from 'd3-shape';
 	import { bisector } from 'd3-array';
 	import { countryTileConfig, countryTileScaleY, countryTileScaleX } from '$stores/scales.js';
-	import { displayFlows } from '$stores/settings.js';
+	import { displayFlows, isMobileView } from '$stores/settings.js';
 	import { countries as countriesRu } from '$data/countriesRu.js';
 
 	import Tooltip from '$components/Tooltip.svelte';
@@ -68,7 +68,7 @@
 		<path d={turnoverLine} class="line-turnover" transition:fly />
 	{/if}
 
-	{#if showTooltip}
+	{#if showTooltip && !$isMobileView}
 		<line x1={tooltip.x} x2={tooltip.x} y1="0" y2="100%" class="tooltip-line" />
 	{/if}
 
@@ -83,7 +83,7 @@
 	{/if}
 </svg>
 
-{#if showTooltip}
+{#if (showTooltip && !$isMobileView)}
 	<Tooltip year={tooltip.year} {country} />
 {/if}
 

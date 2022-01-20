@@ -24,12 +24,13 @@
 	.tooltip-box {
 		position: absolute;
 		background-color: var(--color-dark-primary);
-		outline: 2px solid var(--color-dark-primary);
+		border: 1px solid var(--color-dark-primary);
+		border-radius: 3px;
 		text-align: left;
-		padding: 0;
+		padding: 2px 0;
 		opacity: 0.8;
 		margin-top: 2px;
-		border-radius: 1px;
+		border-radius: 3px;
 	}
 
 	.tooltip-box p {

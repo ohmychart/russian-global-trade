@@ -19,6 +19,8 @@
 	import Header from '$components/Header.svelte';
 	import Intro from '$components/Intro.svelte';
 	import Visualization from '$components/Visualization.svelte';
+
+	import { isMobileView } from '$stores/settings.js';
 </script>
 
 <svelte:head>
@@ -35,8 +37,12 @@
 	<link rel="manifest" href="/site.webmanifest">
 </svelte:head>
 
-<Header />
+<Header isMobile={$isMobileView} />
 
-<Intro />
+<Intro>
+	{#if $isMobileView}
+		<p>Визуализация импорта и экспорта товаров за последние 20 лет.</p>
+	{/if}
+</Intro>
 
 <Visualization {data} />

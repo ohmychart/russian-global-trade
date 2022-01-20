@@ -11,4 +11,5 @@ export let displayYearEnd = writable(2020);
 
 export let endpointsOnly = writable(false);
 
-export let isMobileView = writable(true);
+export let clientWidth = writable();
+export let isMobileView = writable(false);

@@ -1,6 +1,6 @@
 <script>
 	import CountryTile from '$components/CountryTile.svelte';
-	import { isMobileView } from '$stores/settings.js'
+	import { clientWidth, isMobileView } from '$stores/settings.js'
 
 	export let continentName;
 	export let countries;
@@ -8,8 +8,10 @@
 
 	let columnsClass;
 
-	$: if ($isMobileView) {
-		columnsClass = 'col-3';
+	$: if ($isMobileView && $clientWidth >= 350) {
+			columnsClass = 'col-3';
+	} else if ($isMobileView && $clientWidth < 350) {
+		columnsClass = 'col-3-sm';
 	} else {
 		columnsClass = `col-${columns}`;
 	};

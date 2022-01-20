@@ -1,3 +1,9 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-<circle cx="32" cy="32" r="32" />
+<svg viewBox="0 0 64 105" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.707107" y="-5.96046e-08" width="14" height="14" transform="matrix(0.707107 0.707107 0.707107 -0.707107 0.207107 52.0296)"  />
+<rect x="0.707107" y="-5.96046e-08" width="14" height="14" transform="matrix(0.707107 0.707107 0.707107 -0.707107 21.5404 52.0296)"  />
+<rect x="0.707107" y="-5.96046e-08" width="14" height="14" transform="matrix(0.707107 0.707107 0.707107 -0.707107 42.8738 52.0296)"  />
+<rect x="0.707107" y="-5.96046e-08" width="14" height="14" transform="matrix(0.707107 0.707107 0.707107 -0.707107 21.5404 30.6963)"  />
+<rect x="22.0404" y="73.6065" width="14" height="14" transform="rotate(-45 22.0404 73.6065)"  />
+<rect x="0.707107" y="-5.96046e-08" width="14" height="14" transform="matrix(0.707107 0.707107 0.707107 -0.707107 42.1117 10.1066)"  />
+<rect x="42.6117" y="94.1963" width="14" height="14" transform="rotate(-45 42.6117 94.1963)"  />
 </svg>

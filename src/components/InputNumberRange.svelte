@@ -30,7 +30,7 @@
 	}
 </script>
 
-<label class="range"
+<label class="range-start"
 	>с
 	<input type="number" step="1" min={minValue} max={maxValue} bind:value={startValue} size="4" maxlength="4" /><button
 		class="decrement"
@@ -38,7 +38,7 @@
 	><button on:click={incrementStart}>+</button>
 </label>
 
-<label class="range"
+<label class="range-end"
 	>по
 	<input type="number" step="1" min={minValue} max={maxValue} bind:value={endValue} size="4" maxlength="4"/><button
 		class="decrement"
@@ -49,7 +49,7 @@
 <style>
 	label {
 		display: inline-block;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		color: var(--color-dark-primary);
 		border: solid var(--color-dark-medium);
 		border-width: 0 0 1px 0;
@@ -69,11 +69,11 @@
 
 	input {
 		color: var(--color-dark-primary);
-		font-size: 1rem;
+		font-size: 0.9rem;
 		border: 0;
 		margin: 0;
 		display: inline-block;
-		max-width: 3rem;
+		
 	}
 
 	input:focus {
@@ -105,7 +105,7 @@
 		background-color: var(--color-dark-medium);
 	}
 
-	.range {
+	.range-end {
 		margin-left: 0.5rem;
 	}
 </style>

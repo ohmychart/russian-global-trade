@@ -1,6 +1,7 @@
 <script></script>
 
 <section>
+	<div class="intro-text-mobile"><slot /></div>
 	<p>
 		Это интерактивная инфографика, которая позволяет получить представление о российской внешней
 		торговле товарами (без учета услуг, финансовых и других нетоварных операций). Здесь в виде
@@ -30,10 +31,15 @@
 	section {
 		max-width: var(--main-column-width);
 		text-align: left;
-		margin: 3rem auto 3rem auto;
+		margin: 0 auto 1.5rem auto;
 		font-size: 1rem;
 		line-height: 1.5rem;
 		padding: 0 1rem 0 1rem;
+	}
+
+	.intro-text-mobile {
+		color: var(--color-dark-secondary);
+		font-weight: 400;
 	}
 
 	details {
@@ -42,7 +48,7 @@
 	}
 
 	details p {
-        margin: 0.5rem 1.5rem;
+		margin: 0.5rem;
 	}
 
 	summary {

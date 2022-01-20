@@ -9,6 +9,7 @@
 		displayYearStart,
 		displayYearEnd,
 		endpointsOnly,
+		clientWidth,
 		isMobileView
 	} from '$stores/settings.js';
 	
@@ -19,8 +20,6 @@
 
 	export let data;
 
-	let width;
-
 	const sortedData = sort(data.data, (d) => {
 		let tSum = sum(
 			d.records.filter((rec) => rec.flow === 'Turnover'),
@@ -30,7 +29,7 @@
 		return -tSum;
 	});
 
-	$: $isMobileView = width < 1300;
+	$: $isMobileView = $clientWidth < 1300;
 
 	$: filteredData = filterData(
 		sortedData,
@@ -50,7 +49,7 @@
 	$: legend = filteredData.filter((d) => d.country === 'Germany');
 </script>
 
-<main bind:clientWidth={width}>
+<main bind:clientWidth={$clientWidth}>
 	<div class="controls-container" class:flex-row={!$isMobileView}>
 		<Settings />
 

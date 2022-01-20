@@ -17,7 +17,7 @@
 		padding-left: 1.7rem;
 		/* margin-left: 1rem; */
 		cursor: pointer;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		line-height: 1.375rem;
 		-webkit-user-select: none;
 		-moz-user-select: none;
