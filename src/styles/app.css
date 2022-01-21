@@ -15,6 +15,10 @@
     --main-header-padding-mobile: 1rem 0.75rem;
 
     --main-column-width: 800px;
+
+    --color-dark-primary-alpha80: #212121CC;
+    --color-dark-50-alpha80: #FAFAFACC;
+    --color-white-primary-alpha80: #FFFFFFCC;
 }
 
 body {

@@ -1,13 +1,15 @@
 <script>
+	import { fly } from 'svelte/transition';
+	import { createEventDispatcher } from 'svelte';
+
 	import { area, line } from 'd3-shape';
 	import { bisector } from 'd3-array';
+
 	import { countryTileConfig, countryTileScaleY, countryTileScaleX } from '$stores/scales.js';
 	import { displayFlows, isMobileView } from '$stores/settings.js';
 	import { countries as countriesRu } from '$data/countriesRu.js';
 
 	import Tooltip from '$components/Tooltip.svelte';
-
-	import { fly } from 'svelte/transition';
 
 	export let country;
 
@@ -46,6 +48,15 @@
 	$: turnoverLine = lineGenerator(country.records.filter((d) => d.flow === 'Turnover'));
 
 	$: showTooltip = tooltip.show && tooltip.year && !$$slots.legend;
+
+	// Show country's details modal window
+	const dispatch = createEventDispatcher();
+	function showCountryModal() {
+		dispatch('showCountryModal', {
+			country 
+		});
+	}
+
 </script>
 
 <svg
@@ -55,6 +66,7 @@
 	on:mousemove={mouseOver}
 	on:focus={mouseOver}
 	on:mouseleave={mouseLeave}
+	on:click={showCountryModal}
 >
 	{#if $displayFlows.import}
 		<path d={importArea} class="area-import" transition:fly />

@@ -23,7 +23,7 @@
 		<h2>{continentName}</h2>
 		<ul class={columnsClass} >
 			{#each countries as country}
-				<li><CountryTile {country} /></li>
+				<li><CountryTile {country} on:showCountryModal /></li>
 			{/each}
 		</ul>
 	</div>

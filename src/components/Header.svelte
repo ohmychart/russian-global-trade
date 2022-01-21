@@ -39,7 +39,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		border-bottom: 1px solid var(--color-dark-medium);
+		border-bottom: 2px solid var(--color-dark-light);
 		margin-bottom: 2.5rem;
 	}
 

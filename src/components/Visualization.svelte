@@ -2,6 +2,7 @@
 	import CountryTilePanel from '$components/CountryTilePanel.svelte';
 	import CountryTileLegend from '$components/CountryTileLegend.svelte';
 	import Settings from '$components/Settings.svelte';
+	import CountryModal from '$components/CountryModal.svelte';
 
 	import { countryTileConfig } from '$stores/scales';
 	import {
@@ -47,6 +48,16 @@
 	$: southAmerica = filteredData.filter((d) => d.continent === 'South America');
 	$: oceania = filteredData.filter((d) => d.continent === 'Oceania');
 	$: legend = filteredData.filter((d) => d.country === 'Germany');
+
+	// Handling country's details modal
+	let showCountryModal = false;
+	let countryModalInfo;
+
+	function handleShowCountryModal(event) {
+		showCountryModal = true;
+		countryModalInfo = event.detail.country;
+	}
+
 </script>
 
 <main bind:clientWidth={$clientWidth}>
@@ -64,20 +75,22 @@
 		{/if}
 
 		<div id="west">
-			<CountryTilePanel countries={northAmerica} continentName="Северная Америка" columns="2" />
-			<CountryTilePanel countries={southAmerica} continentName="Южная Америка" columns="2" />
+			<CountryTilePanel countries={northAmerica} continentName="Северная Америка" columns="2" on:showCountryModal={handleShowCountryModal}/>
+			<CountryTilePanel countries={southAmerica} continentName="Южная Америка" columns="2" on:showCountryModal={handleShowCountryModal} />
 		</div>
 
 		<div id="middle">
-			<CountryTilePanel countries={europe} continentName="Европейские страны" columns="5" />
-			<CountryTilePanel countries={africa} continentName="Африка" columns="2" />
+			<CountryTilePanel countries={europe} continentName="Европейские страны" columns="5" on:showCountryModal={handleShowCountryModal} />
+			<CountryTilePanel countries={africa} continentName="Африка" columns="2" on:showCountryModal={handleShowCountryModal} />
 		</div>
 
 		<div id="east">
-			<CountryTilePanel countries={asia} continentName="Азия" columns="3" />
-			<CountryTilePanel countries={oceania} continentName="Океания" columns="1" />
+			<CountryTilePanel countries={asia} continentName="Азия" columns="3" on:showCountryModal={handleShowCountryModal} />
+			<CountryTilePanel countries={oceania} continentName="Океания" columns="1" on:showCountryModal={handleShowCountryModal} />
 		</div>
 	</div>
+
+	<CountryModal bind:show={showCountryModal} country={countryModalInfo} />
 </main>
 
 <style>

@@ -26,7 +26,7 @@
 		max-width: 100%;
 		z-index: 999;
 		background-color: var(--color-white-primary);
-		border-left: 1px solid var(--color-dark-medium);
+		border-left: 2px solid var(--color-dark-light);
 
 		display: flex;
 		flex-direction: row;
