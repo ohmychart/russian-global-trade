@@ -1,8 +1,7 @@
-import { countryTileScaleY, countryTileScaleX } from "$stores/scales.js";
+import { countryTileScaleY, countryTileScaleX, commodityAreaScaleX, commodityAreaScaleY } from "$stores/scales.js";
 
 import { scaleLinear } from "d3-scale";
 import { max } from "d3-array";
-
 
 const filterRange = (rec, displayYearStart, displayYearEnd) => {
   return rec.year >= displayYearStart && rec.year <= displayYearEnd;
@@ -19,7 +18,6 @@ export const filterData = function (
   displayYearEnd,
   endpointsOnly
 ) {
-
   let filterYears = filterRange;
   if (endpointsOnly) filterYears = filterEndpoints;
 
@@ -45,7 +43,8 @@ export const setScales = function (
   data,
   displayYearStart,
   displayYearEnd,
-  countryTileConfig
+  countryTileConfig,
+  commodityAreaConfig
 ) {
   countryTileScaleY.set(
     scaleLinear()
@@ -56,6 +55,18 @@ export const setScales = function (
   countryTileScaleX.set(
     scaleLinear()
       .range([0, countryTileConfig.width])
+      .domain([displayYearStart, displayYearEnd])
+  );
+
+  commodityAreaScaleY.set(
+    scaleLinear()
+      .range([commodityAreaConfig.height, 0])
+      .domain([0, 100])
+  );
+
+  commodityAreaScaleX.set(
+    scaleLinear()
+      .range([0, commodityAreaConfig.width])
       .domain([displayYearStart, displayYearEnd])
   );
 };

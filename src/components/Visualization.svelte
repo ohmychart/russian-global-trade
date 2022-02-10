@@ -4,7 +4,7 @@
 	import Settings from '$components/Settings.svelte';
 	import CountryModal from '$components/CountryModal.svelte';
 
-	import { countryTileConfig } from '$stores/scales';
+	import { countryTileConfig, commodityAreaConfig } from '$stores/scales';
 	import {
 		displayFlows,
 		displayYearStart,
@@ -39,7 +39,7 @@
 		$displayYearEnd,
 		$endpointsOnly
 	);
-	$: setScales(filteredData, $displayYearStart, $displayYearEnd, $countryTileConfig);
+	$: setScales(filteredData, $displayYearStart, $displayYearEnd, $countryTileConfig, $commodityAreaConfig);
 
 	$: europe = filteredData.filter((d) => d.continent === 'Europe');
 	$: africa = filteredData.filter((d) => d.continent === 'Africa');
@@ -89,8 +89,10 @@
 			<CountryTilePanel countries={oceania} continentName="Океания" columns="1" on:showCountryModal={handleShowCountryModal} />
 		</div>
 	</div>
-
-	<CountryModal bind:show={showCountryModal} country={countryModalInfo} />
+	{#if showCountryModal}
+		<CountryModal bind:show={showCountryModal} country={countryModalInfo} />
+	{/if}
+	
 </main>
 
 <style>

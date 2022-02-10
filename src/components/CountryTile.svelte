@@ -90,8 +90,7 @@
 
 	{#if !$$slots.legend}
 		<text x="2px" y="14px" class="country-name">{countriesRu[country.country]}</text>
-	{:else}
-		<text x="2px" y="14px" class="country-name">Торговый объем</text>
+
 	{/if}
 </svg>
 
