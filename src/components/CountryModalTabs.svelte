@@ -30,7 +30,7 @@ ul {
 }
 
 span {
-    padding: 0.5rem 3rem;
+    padding: 0.5rem;
     color: var(--color-dark-primary);
     display: block;
     margin: 0;

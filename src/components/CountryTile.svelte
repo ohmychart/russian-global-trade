@@ -1,5 +1,4 @@
 <script>
-	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 
 	import { area, line } from 'd3-shape';
@@ -69,15 +68,15 @@
 	on:click={showCountryModal}
 >
 	{#if $displayFlows.import}
-		<path d={importArea} class="area-import" transition:fly />
+		<path d={importArea} class="area-import" />
 	{/if}
 
 	{#if $displayFlows.export}
-		<path d={exportArea} class="area-export" transition:fly />
+		<path d={exportArea} class="area-export" />
 	{/if}
 
 	{#if $displayFlows.turnover}
-		<path d={turnoverLine} class="line-turnover" transition:fly />
+		<path d={turnoverLine} class="line-turnover" />
 	{/if}
 
 	{#if showTooltip && !$isMobileView}

@@ -65,6 +65,7 @@
 		<Settings />
 
 		<div id="legend-container">
+			<p>Легенда:</p>
 			<CountryTileLegend country={legend[0]} />
 		</div>
 	</div>
@@ -107,6 +108,13 @@
 		margin: auto;
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
+	}
+
+	#legend-container p {
+		font-size: 0.8rem;
+		line-height: 0.95rem;
+		margin: 0 0 0.8rem 0;
+		color: var(--color-dark-secondary);
 	}
 
 	.viz-container {
