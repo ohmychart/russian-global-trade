@@ -47,8 +47,12 @@ td {
 }
 
 .description.mobile {
-    
+    padding-top: 0.75rem;
     border-bottom: none;
+}
+
+tr:nth-child(1) td.description.mobile {
+    padding-top: 0;
 }
 
 .description, .total {

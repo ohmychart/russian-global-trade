@@ -19,19 +19,18 @@
 </script>
 
 <div id="container">
-
-	
 	<div id="years-settings-container">
-		<div>
-		<InputNumberRange
-			minValue="2000"
-			maxValue="2020"
-			bind:startValue={$displayYearStart}
-			bind:endValue={$displayYearEnd}
-		/>
+		<div class="years-range-wrapper">
+			<InputNumberRange
+				minValue="2000"
+				maxValue="2020"
+				bind:startValue={$displayYearStart}
+				bind:endValue={$displayYearEnd}
+			/>
 		</div>
-		
-		<div><GhostButton title="Только за период" bind:isSelected={$endpointsOnly}><Icon name="range" size="1rem" class={$endpointsOnly ? "range-icon-selected" : "range-icon"} /></GhostButton>
+
+		<div class="endpoints-range-wrapper">
+			<Checkbox bind:checked={$endpointsOnly} label="Только период" />
 		</div>
 	</div>
 
@@ -42,20 +41,19 @@
 	</div>
 </div>
 
-
 <style>
 	#years-settings-container {
-		padding-top: 1.5rem;
+		padding: 8px 0;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		margin: 0 8px 0 8px;
+		outline: 2px solid var(--color-dark-light);
 	}
 
-	#years-settings-container div {
-		display: inline-block;
-		margin-left: 0.5rem;
-		margin-top: 0.5rem;
+	.endpoints-range-wrapper {
+		margin-top: 8px;
 	}
 
 	#flows-settings-container {
@@ -63,23 +61,23 @@
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: center;
-		padding-top: 1.5rem;
-		padding-bottom: 1.5rem;
-
+		padding: 8px 10px;
+		margin: 10px 8px 0 8px;
+		
 	}
 
 	#flows-settings-container div {
 		display: inline-block;
-		margin-left: 1rem;
-		margin-top: 0.5rem;
+		margin-left: 16px;
 	}
 
+	#flows-settings-container div:nth-child(1) {
+		display: inline-block;
+		margin-left: 0;
+	}
 
 	#container {
-		
 		margin: auto;
-		padding-bottom: 1.5rem;
-		padding-top: 1.5rem;
 	}
 
 	:global(.range-icon) {

@@ -32,7 +32,7 @@
 
 <label class="range-start"
 	>с
-	<input type="number" step="1" min={minValue} max={maxValue} bind:value={startValue} size="4" maxlength="4" /><button
+	<input readonly type="number" step="1" min={minValue} max={maxValue} bind:value={startValue} size="4" maxlength="4" /><button
 		class="decrement"
 		on:click={decrementStart}>-</button
 	><button on:click={incrementStart}>+</button>
@@ -40,7 +40,7 @@
 
 <label class="range-end"
 	>по
-	<input type="number" step="1" min={minValue} max={maxValue} bind:value={endValue} size="4" maxlength="4"/><button
+	<input readonly type="number" step="1" min={minValue} max={maxValue} bind:value={endValue} size="4" maxlength="4"/><button
 		class="decrement"
 		on:click={decrementEnd}>-</button
 	><button on:click={incrementEnd}>+</button>

@@ -113,14 +113,14 @@
 	#legend-container p {
 		font-size: 0.8rem;
 		line-height: 0.95rem;
-		margin: 0 0 0.8rem 0;
+		margin: 0 0 0.5rem 0;
 		color: var(--color-dark-secondary);
 	}
 
 	.viz-container {
 		position: relative;
 		display: block;
-		margin-top: 2rem;
+		margin-top: 0.5rem;
 		/* display: flex;
 		flex-direction: row;
 		justify-content: space-around;
