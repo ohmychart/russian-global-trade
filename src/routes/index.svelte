@@ -19,6 +19,7 @@
 	import Header from '$components/Header.svelte';
 	import Intro from '$components/Intro.svelte';
 	import Visualization from '$components/Visualization.svelte';
+	import Footer from '$components/Footer.svelte';
 
 	import { isMobileView } from '$stores/settings.js';
 </script>
@@ -46,3 +47,5 @@
 </Intro>
 
 <Visualization {data} />
+
+<Footer />
