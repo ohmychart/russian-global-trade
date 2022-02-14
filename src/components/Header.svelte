@@ -10,7 +10,7 @@
 
 <header>
 	<div class="main-header" class:mobile={isMobile}>
-		<div class="main-logo" class:mobile={isMobile}>{@html logo}</div>
+		<div class="main-logo" class:mobile={isMobile}><a href="https://ohmychart.com">{@html logo}</a></div>
 
 		<div class="main-header-title">
 			<h1 class:mobile={isMobile}>С кем торгует Россия?</h1>
@@ -52,7 +52,7 @@
 
 	.main-logo {
 		width: 32px;
-		height: 52.5px;
+		height: 32px;
 		display: inline-block;
 		padding: 0;
 		margin: 0;
@@ -66,8 +66,8 @@
 	}
 
 	.main-logo.mobile {
-		width: 16px;
-		height: 26.25px;
+		width: 24px;
+		height: 24px;
 		fill: var(--color-teal-primary);
 	}
 

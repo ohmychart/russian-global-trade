@@ -48,8 +48,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin: 0 8px 0 8px;
-		outline: 2px solid var(--color-dark-light);
+		margin: 0 auto 0 auto;
+		max-width: 460px;
 	}
 
 	.endpoints-range-wrapper {
@@ -62,8 +62,9 @@
 		justify-content: space-around;
 		align-items: center;
 		padding: 8px 10px;
-		margin: 10px 8px 0 8px;
-		
+		margin: 10px auto 0 auto;
+		max-width: 500px;
+		text-align: center;
 	}
 
 	#flows-settings-container div {

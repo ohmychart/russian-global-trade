@@ -25,12 +25,13 @@
 </script>
 
 <svelte:head>
+	<html lang="ru" />
 	<title>С кем торгует Россия? Визуализация экспорта и импорта торваров между Россией и другими странами с 2000 по 2020 гг.</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
-	<meta name="author" content="Chartagrams.com" />
+	<meta name="author" content="OhMyChart.com" />
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
