@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import { clickOutside } from '$utils/clickOutside.js';
 	import { countries as countriesRu } from '$data/countriesRu.js';
 	import { map as countryCodeMap } from '$data/countryCodeMap.js';
@@ -49,7 +50,7 @@
 	};
 
 	onMount(async () => {
-		const res = await fetch(`/api/goods/${countryCode}`);
+		const res = await fetch(`${base}/api/goods/${countryCode}.json`);
 		const data = await res.json();
 
 		const importData = data.Import.filter(
@@ -81,7 +82,7 @@
 			}}
 		>
 			<a
-				href="/"
+				href="{base}/"
 				on:click={() => {
 					show = false;
 				}}

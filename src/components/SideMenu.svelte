@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import Icon from '$components/Icon.svelte';
 	export let open = false;
 </script>
@@ -12,7 +13,7 @@
 			социальные, экономические и исторические темы.
 		</p>
 	</section>
-	<a href="/" on:click={() => (open = !open)} id="closeMenuLink">
+	<a href="{base}/" on:click={() => (open = !open)} id="closeMenuLink">
 		<Icon name="x" size="2.5rem" id="closeMenu" />
 	</a>
 </aside>

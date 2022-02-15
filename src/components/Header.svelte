@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import SideMenu from '$components/SideMenu.svelte';
 	import Icon from '$components/Icon.svelte';
 	import logo from '$svg/logo-sm.svg';
@@ -19,7 +20,7 @@
 			{/if}
 		</div>
 
-		<a href="/" on:click={() => (sideMenu = !sideMenu)}>
+		<a href="{base}/" on:click={() => (sideMenu = !sideMenu)}>
 			<Icon
 				name="menu"
 				size={isMobile ? '2rem' : '2.5rem'}
@@ -51,29 +52,27 @@
 	}
 
 	.main-logo {
-		width: 32px;
-		height: 32px;
+		width: 64px;
+		height: 64px;
 		display: inline-block;
 		padding: 0;
 		margin: 0;
+
+	}
+
+	.main-logo a {
 		fill: var(--color-dark-medium);
 		transition: all 0.4s ease-in-out;
 		cursor: pointer;
 	}
 
-	.main-logo:hover {
-		fill: var(--color-dark-primary);
-	}
-
-	.main-logo.mobile {
-		width: 24px;
-		height: 24px;
+	.main-logo a:hover {
 		fill: var(--color-teal-primary);
 	}
 
-	.main-logo.mobile:hover {
-		transform: none;
-		fill: var(--color-white-primary);
+	.main-logo.mobile {
+		width: 32px;
+		height: 32px;
 	}
 
 	.main-header-title {

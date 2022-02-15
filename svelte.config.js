@@ -1,6 +1,7 @@
 import adapter from "@sveltejs/adapter-static";
 import path from "path";
 import svg from "vite-plugin-svgstring";
+import {getRoutes} from './src/utils/apiRoutesList.js';
 
 const dev = process.env.NODE_ENV === "development";
 
@@ -32,6 +33,10 @@ const config = {
 		paths: {
 			base: dev ? "" : "/russian-global-trade",
 			// assets: dev ? "" : "/russian-global-trade"
+		},
+		prerender: {
+			enabled: true,
+			entries: getRoutes(),
 		}
 	}
 };

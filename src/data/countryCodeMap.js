@@ -39,7 +39,6 @@ export const map = {
   Malta: 470,
   Netherlands: 528,
   Norway: 579,
-  "Other Asia, nes": 490,
   Poland: 616,
   "Rep. of Korea": 410,
   "Rep. of Moldova": 498,
