@@ -75,6 +75,10 @@
 		height: 32px;
 	}
 
+	.main-logo.mobile a {
+		fill: var(--color-teal-primary);
+	}
+
 	.main-header-title {
 		text-align: center;
 	}
