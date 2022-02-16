@@ -66,8 +66,6 @@
 		importGoods = sort([...importGoods], (d) => -d[1].total).slice(0, 5);
 		exportGoods = sort([...exportGoods], (d) => -d[1].total).slice(0, 5);
 
-		console.log('exportGoods', country.country, exportGoods);
-		console.log('importGoods', country.country, importGoods);
 	});
 </script>
 
